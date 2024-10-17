@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.7.1"
+  },
+  "name": "content-manager-system",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/mongoose": "^5.11.96",
+    "ts-node": "^10.9.2"
+  },
+  "scripts": {
+    "dev": "clear && node --watch --env-file=.env -r ts-node/register src/index.ts",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "cms written in typescript, connect the mongo db and use an api to manage content collection"
+}
