@@ -8,7 +8,7 @@ const app = e();
 
 app.use(
   cors({
-    origin: ["localhost", "*"],
+    origin: "*",
     credentials: true,
   })
 );
