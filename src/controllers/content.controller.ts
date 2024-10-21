@@ -71,7 +71,11 @@ const insertContent = async (
   }
 };
 
-const editContent = async (req: Request, res: Response) => {
+const editContent = async (
+  req: Request,
+  res: Response,
+  connection: mongoose.Connection
+) => {
   const { contentId } = req.params;
   const { type, data }: IContentInput = req.body;
 
@@ -83,7 +87,16 @@ const editContent = async (req: Request, res: Response) => {
   }
 
   try {
-    res.sendStatus(200);
+    const collection = connection.collection("content");
+    const content = await collection.findOneAndUpdate(
+      { id: contentId },
+      { type, data }
+    );
+    if (!content) {
+      sendErrorResponse(res, 404, "Not found");
+      return;
+    }
+    res.status(200).json(content);
   } catch (error) {
     sendErrorResponse(res, 500, "Internal server error");
     console.error(error);

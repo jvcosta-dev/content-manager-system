@@ -18,7 +18,9 @@ export const createRoutes = async (dbName: string, uri: string) => {
     insertContent(req, res, connection)
   );
 
-  app.patch(`/${dbName}`, editContent);
+  app.patch(`/${dbName}/:contentId`, (req: Request, res: Response) =>
+    editContent(req, res, connection)
+  );
 
   console.log(`created routes for /${dbName}`);
 };
